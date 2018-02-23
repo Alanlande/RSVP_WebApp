@@ -1,7 +1,9 @@
-# Make sure that you download into a linux environment and have installed python3 and django packages
+# RSVP_Django_Web_App by De Lan
+
+## Make sure that you download into a linux environment and have installed python3 and django packages
 
 ## Usage:
-cd erss-hwk1-dl261-ys205/docker-deploy
+cd docker-deploy
 
 sudo docker-compose up
 
@@ -17,6 +19,6 @@ cd ..
 sudo docker-compose run web python3 manage.py makemigrations
 
 ## Then:
-cd erss-hwk1-dl261-ys205/docker-deploy
+cd docker-deploy
 
 sudo docker-compose up
