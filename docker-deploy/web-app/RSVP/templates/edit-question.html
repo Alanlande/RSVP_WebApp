@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Question Edit Page{% endblock %}
+
+{% block content %}
+
+
+  <h1>This is the question edit page</h1>
+  <p><a href="{% url 'question-delete-page' question.id  %}">Delete this question?</a></p>
+  <p><h2>The original question: {{ question.question_text }}</h2></p >
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+      {{form.as_p}}
+    </table>
+    <input type="submit" value="Submit" />
+  </form>
+
+  {% if question.question_type == 'Multi'%}
+    {% for c in question.choice_set.all%}
+      <h4>Original choice: {{ c.choice_text }}</h4> 
+      <a>votes: {{ c.votes }}</a> 
+      <p><a href="{% url 'choice-edit-page' c.id%}">Edit this choice</a></p>
+    {% endfor %}
+    <p></br></p>
+    <p><a href="{% url 'choice-create-page' question.id  %}">Add choice?</a></p>
+  {% endif %}
+
+  {# <p><a href="{% url 'question-notify-page' question.id  %}">Notify people of the changes?</a></p> #}
+  <p><a href="{% url 'owner-page' question.event.id  %}">Owner page</a></p>
+
+{% endblock %}

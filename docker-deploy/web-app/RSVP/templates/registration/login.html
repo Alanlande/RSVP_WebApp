@@ -1,0 +1,15 @@
+<!-- templates/registration/login.html -->
+{% block title %}Login{% endblock %}
+{% block content %}
+	<h2>Login</h2>
+	<form method="post">
+	  {% csrf_token %}
+	  {{ form.as_p }}
+	  <button type="submit">Login</button>
+	  <p>
+	    <a href="{% url 'signup' %}">sign up</a>
+	    {# Assumes you setup the password_reset view in your URLconf #}
+	    <a href="{% url 'password_reset' %}"> Lost password?</a>
+	  </p>
+	</form>
+{% endblock %}

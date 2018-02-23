@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Owner Page{% endblock %}
+
+{% block content %}
+
+  <h1>This is the owner page</h1>
+  <p>Event name: {{ curEvent.event_name }}</p >
+  <p>Event date: {{ curEvent.event_date }}</p >
+  <p>Event location: {{ curEvent.event_location }}</p >
+
+  <h2>These are multiple choice question response:</h2>
+  {% for q in curEvent.question_set.all %}
+        {% if q.question_type == 'Multi' %}
+        <h2>Question: {{ q.question_text }}</h2>
+        <p><a href="{% url 'question-edit-page' q.id %}">Edit this questions?</a></p>
+        	{% for c in q.choice_set.all%}
+        		<h3>Choice: {{ c.choice_text }}</h3> 
+        		<a>votes: {{ c.votes }}</a> 
+        	{% endfor %}
+        <p><br></p>
+        {% endif %}
+  {% endfor %}
+
+  <h2>These are free text question response:</h2>
+  {% for q in curEvent.question_set.all %}
+        {% if q.question_type == 'Free' %}
+        <h2>Question: {{ q.question_text }}</h2>
+        <p><a href="{% url 'question-edit-page' q.id %}">Edit this questions?</a></p>
+          {% for r in q.response_set.all%}
+            <h3>{{r.user.username}}: {{ r.choice.choice_text }}</h3> 
+          {% endfor %}
+        <p><br></p>
+        {% endif %}
+  {% endfor %}
+
+  <p><a href="{% url 'question-create-page' curEvent.id%}">Create new questions?</a></p>
+  <p><a href="{% url 'invite-page' curEvent.id %}">Invite others in</a></p>
+
+{% endblock %}

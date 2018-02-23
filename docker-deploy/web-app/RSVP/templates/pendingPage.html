@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Pending Page{% endblock %}
+{% block content %}
+
+	<h1>This is pending page</h1>
+	<p><h3>You are invited as: {{ curRole.roleType }}</h3></p >
+	<p>Event name: {{ curRole.event.event_name }}</p >
+	<p>Event date: {{ curRole.event.event_date }}</p >
+	<p>Event location: {{ curRole.event.event_location }}</p >
+
+	<form action="" method="post">
+	    {% csrf_token %}
+	    <table>
+	    {{form.as_p}}
+	    </table>
+	    <input type="submit" value="Submit" />
+	    <!-- <p><a href="{% url 'homepage' %}">Homepage</a></p> -->
+	</form>
+
+{% endblock %}

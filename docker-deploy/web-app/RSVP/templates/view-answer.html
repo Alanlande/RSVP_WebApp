@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}View Answer Page{% endblock %}
+{% block content %}
+
+	<h1>This is view answer page</h1>
+	{% for r in responseSet %}
+	    <h2>{{r.question.question_text}}</h2>
+	    <h3>Your answer : {{r.choice.choice_text}}</h3>
+	    <p>----------------------------</p>
+	{% endfor %}
+
+{% endblock %}

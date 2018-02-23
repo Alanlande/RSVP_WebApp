@@ -1,0 +1,41 @@
+############################################
+########### RSVP_Django_WebApp ###########
+############################################
+1. We didn't include any user id in our URL.
+
+At the beginning, we didn't know we can get user id in the request so we include them in URL but this is a bad idea because evil users can try to get the information you store in the database(user id) from your URL.
+
+
+2. We added @login_required to prevent none-login user accessing event page
+
+
+3. We added a "role type" check before login accessing the URL directly 
+
+Basically, if user want to access owner-page, we need to check if the requesting user is an owner,
+if user want to access vendor-page, we need to check if the requesting user is a vendor,
+if user want to access guest-page, we need to check if the requesting user is a guest,
+Otherwise, a guest user can just change "guest" into "owner" in URL and see others' responses which are very bad.
+
+
+4. We added some exception to prevent our website goes down
+    4.1 In guest-page(for each question only show each choice once), if the user already chosen to go with a +1 and answered each question twice in the guest guestPlusOne-page and try to answer again in guest-page, we will show the user that this is not valid
+
+    4.2 In guestPlusOne-page(for each question we show each choice twice), if the user already chosen to go by themselves and answered each question once in the guest-page and try to answer again in guestPlusOne-page, we will show the user that this is not valid 
+
+    4.3 In create-event page if we didn't get a valid "date", we will show that this is not valid
+
+    4.4 In invite-user page if we can't find the username user inputted in database, we will show that this is not valid
+
+    4.5 At first we want to add a plusOneNum field in the Event class to let the owner decide how many +1s can guest bring with and we use IntegerField and then found out that user can input negative number to mess the database. Then we change it to PositiveIntegerField.
+    At last we didn't use this implementation, instead, we use a BooleanField to let owner determine yes or no. But I think we should also put this thought into danger log
+
+5. We do have some potential performace issue
+    
+    5.1 When letting the guest view their question answer, we need to get a curQuestionSet and iterate the set to filter Response object again, this kind of operation waste a lot of computing power and time.
+
+    5.2 When writing HTML file to show questions and answers in owner page and vendor page, we use some duplicate for-loops. It could be more efficient if we can divide the result set we want and pass in separately in view method.
+
+    5.3 In guestPage and guestPlusOnePage our logic is redundant and the code is ugly because we want to implement the +1 function and fail to find an elegant way to do it.
+
+6. We fixed sign in page and log out page 404 error
+    We extend a base with a nice navigation bar but if a user logged out and then click any button in navigation bar the website will 404. We fix this by not extending the base in log out page.

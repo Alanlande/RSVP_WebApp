@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Vendor Event Homepage{% endblock %}
+{% block content %}
+
+  <h1>Dear {{curUser}}: </h1>
+  <h3>Here is your event (as vendor):</h3>
+  <p><br></p>
+    {% for role in curUser.role_set.all %}
+      {% if role.roleType == "vendor" and role.status == "accept"%}
+        <p>Event name: {{ role.event.event_name }}</p >
+        <p>Event date: {{ role.event.event_date }}</p >
+        <p>Event location: {{ role.event.event_location }}</p >
+        <a href="{% url 'vendor-page' role.event.id  %}">vendor page</a>
+        <p><br></p>
+      {% endif %}
+    {% endfor %}
+
+
+{% endblock %}

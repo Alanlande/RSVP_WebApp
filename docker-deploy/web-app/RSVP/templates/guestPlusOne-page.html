@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}GuesPlusOne Page{% endblock %}
+{% block content %}
+
+      <h1>This is guest +1 page</h1>
+      <p>Event name: {{ curEvent.event_name }}</p >
+      <p>Event date: {{ curEvent.event_date }}</p >
+      <p>Event location: {{ curEvent.event_location }}</p >
+      <p><a href="{% url 'view-answer-page' curEvent.id %}"> view all your answers</a></p>
+      {% if error_message %}
+            <div class="alert alert-danger">
+                  <strong>{{ error_message }}</strong>
+            </div>
+      {% endif %}
+
+      <h2>These are multiple choice question: </h2>
+      {% for question in curEvent.question_set.all %}
+            {% if question.finalization == False and question.question_type == "Multi" %}
+            <h3>Question: {{ question.question_text }}</h3>
+            	<!-- {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %} -->
+            	<form action="" method="post">
+            	{% csrf_token %}
+            	{% for choice in question.choice_set.all%}
+            		<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+            		<label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+                  {% endfor %}
+                  <p>--------------------</p>
+                  {% for choice in question.choice_set.all%}
+                        <input type="radio" name="choiceplus" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+                        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+                  {% endfor %}
+
+            	<input type="submit" value="Vote" />
+      		</form>
+            {% endif %}
+      {% endfor %}
+
+      <h2>These are free text question: </h2>
+      {% for question in curEvent.question_set.all %}
+            {% if question.finalization == False and question.question_type == "Free"%}
+                  <p><a href="{% url 'free-text-page' question.id %}">{{question.question_text}}</a></p>
+            {% endif %}
+      {% endfor %}
+
+
+
+      <h2>These question are finalized by vendor</h2>
+      {% for question in curEvent.question_set.all %}
+            {% if question.finalization == True %}
+            <h2>Question: {{ question.question_text }}</h2>
+            <p><br></p>
+            {% endif %}
+      {% endfor %}
+
+      <!-- <p><a href="{% url 'homepage' %}">Homepage</a></p> -->
+      <!-- <p><a href="{% url 'logout'%}">Logout</a></p> -->
+{% endblock %}

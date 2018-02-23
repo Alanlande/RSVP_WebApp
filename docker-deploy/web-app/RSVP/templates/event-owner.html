@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Owner Event Homepage{% endblock %}
+{% block content %}
+  <h1>Dear {{curUser}}: </h1>
+  <h3>Here is your event (as owner):</h3>
+  <p><br></p>
+    {% for role in curUser.role_set.all %}
+      {% if role.roleType == "owner" and role.status == "accept"%}
+        <p>Event name: {{ role.event.event_name }}</p >
+        <p>Event date: {{ role.event.event_date }}</p >
+        <p>Event location: {{ role.event.event_location }}</p >
+        <a href="{% url 'owner-page' role.event.id  %}">owner page</a>
+        <p><br></p>
+      {% endif %}
+    {% endfor %}
+
+
+{% endblock %}

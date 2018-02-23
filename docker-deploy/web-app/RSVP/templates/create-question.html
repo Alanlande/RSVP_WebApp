@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Question Create Page{% endblock %}
+{% block content %}
+
+	<h1>This is question create page</h1>
+	<form action="" method="post">
+	  {% csrf_token %}
+	  <table>
+	    {{form.as_p}}
+	  </table>
+	  <input type="submit" value="Submit" />
+	</form>
+
+{% endblock %}

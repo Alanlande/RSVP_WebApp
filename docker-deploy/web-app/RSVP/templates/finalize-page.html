@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Question Finalizae Page{% endblock %}
+{% block content %}
+  {% if curQuestion.question_type == 'Multi'%}
+      <h2>Do you want to lock this muliple choice question?</h2>
+      <h2>Question: {{ curQuestion.question_text }}</h2>
+      {% for c in curQuestion.choice_set.all%}
+          <h3>Choice: {{ c.choice_text }}</h3> 
+          <a>votes: {{ c.votes }}</a> 
+      {% endfor %}
+  {% endif %}
+
+
+  {% if curQuestion.question_type == 'Free'%}
+      <h2>Do you want to lock this free text question?</h2>
+      <h2>Question: {{ curQuestion.question_text }}</h2>
+       {% for r in curQuestion.responce_set.all%}
+            <h3>{{ r.choice.choice_text }}</h3> 
+        {% endfor %}
+  {% endif %}
+      <form action="" method="post">
+        {% csrf_token %}
+        <table>
+          {{form.as_p}}
+        </table>
+        <input type="submit" value="Submit" />
+      </form>
+{% endblock %}

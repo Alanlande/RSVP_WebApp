@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Guest Event Homepage{% endblock %}
+
+{% block content %}
+  <h1>Dear {{curUser}}: </h1>
+  <h3>Here is your event (as guest):</h3>
+  <p><br></p>
+    {% for role in curUser.role_set.all %}
+      {% if role.roleType == "guest" and role.status == "accept"%}
+        <p>Event name: {{ role.event.event_name }}</p >
+        <p>Event date: {{ role.event.event_date }}</p >
+        <p>Event location: {{ role.event.event_location }}</p >
+        
+        {% if role.event.canPlusOne == True %}
+          <a href="{% url 'guest-page' role.event.id %}">I am going by my self!</a><br>
+          <a href="{% url 'guestPlusOne-page' role.event.id %}">I am going with a +1!</a>
+        {% endif %}
+        {% if role.event.canPlusOne == False %}
+          <a href="{% url 'guest-page' role.event.id  %}">I am going!</a><br>
+        {% endif %}
+        
+        <p><br></p>
+      {% endif %}
+    {% endfor %}
+
+
+{% endblock %}

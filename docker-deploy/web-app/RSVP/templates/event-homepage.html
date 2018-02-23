@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Pending Event Homepage{% endblock %}
+
+{% block content %}
+  <h1>Dear {{curUser}}: </h1>
+  <h3>You have {{pendingNum}} pending events: </h3>
+  <p><br></p>
+  
+  {% for role in curUser.role_set.all %}
+    {% if role.status == "pending"%}
+      <p><a href="{% url 'pendingPage' role.id %}"> {{ role.event.event_name }}</a></p>
+    {% endif %}
+  {% endfor %}
+
+{% endblock %}

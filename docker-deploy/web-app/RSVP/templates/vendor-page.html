@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Vendor Page{% endblock %}
+{% block content %}
+  <h1>This is the vendor page</h1>
+  <p>Event name: {{ curEvent.event_name }}</p >
+  <p>Event date: {{ curEvent.event_date }}</p >
+  <p>Event location: {{ curEvent.event_location }}</p >
+
+  <h1>These Question are finalized</h1>
+  <h2>--------These are multiple choice question response--------:</h2>
+  {% for q in curEvent.question_set.all %}
+        {% if q.question_type == 'Multi' and q.permission == True and q.finalization == True%}
+        <h2>Question: {{ q.question_text }}</h2>
+          {% for c in q.choice_set.all%}
+            <h3>Choice: {{ c.choice_text }}</h3> 
+            <a>votes: {{ c.votes }}</a> 
+          {% endfor %}
+        <p><br></p>
+        {% endif %}
+  {% endfor %}
+
+  <h2> --------These are free text question response--------:</h2>
+  {% for q in curEvent.question_set.all %}
+        {% if q.question_type == 'Free' and q.permission == True and q.finalization == True%}
+        <h2>Question: {{ q.question_text }}</h2>
+          {% for r in q.responce_set.all%}
+            <h3>{{ r.choice.choice_text }}</h3> 
+          {% endfor %}
+        <p><br></p>
+        {% endif %}
+  {% endfor %}
+
+
+  <h1>These Question are open</h1>
+  <h2>--------These are multiple choice question response--------:</h2>
+  {% for q in curEvent.question_set.all %}
+        {% if q.question_type == 'Multi' and q.permission == True and q.finalization == False%}
+        <h2>Question: {{ q.question_text }}</h2>
+          {% for c in q.choice_set.all%}
+            <h3>Choice: {{ c.choice_text }}</h3> 
+            <a>votes: {{ c.votes }}</a> 
+          {% endfor %}
+          <p><a href="{% url 'finalize-page' q.id %}">finalize this question</a></p>
+          <p><br></p>
+        {% endif %}
+  {% endfor %}
+
+  <h2>--------These are free text question response--------:</h2>
+  {% for q in curEvent.question_set.all %}
+        {% if q.question_type == 'Free' and q.permission == True and q.finalization == False%}
+        <h2>Question: {{ q.question_text }}</h2>
+          {% for r in q.response_set.all%}
+            <h3>{{ r.choice.choice_text }}</h3> 
+          {% endfor %}
+          <p><a href="{% url 'finalize-page' q.id %}">finalize this question</a></p>
+        <p><br></p>
+        {% endif %}
+  {% endfor %}
+  <!-- link to close curr event -->
+  <!-- <p><a href="{% url 'homepage' %}">Homepage</a></p> -->
+  <!-- <p><a href="{% url 'logout'%}">Logout</a></p> -->
+
+{% endblock %}
