@@ -1,7 +1,7 @@
-# RSVP_WebApp
+# RSVP_Django_WebApp
 
 ## Usage:
-### In a linux environment
+### In a linux environment, make sure you installed Python3 and Django packages
 
 cd docker-deploy
 
