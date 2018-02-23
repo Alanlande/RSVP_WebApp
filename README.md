@@ -29,4 +29,4 @@ sudo docker-compose up
 
 
 ## Finally:
-Open your browser and goto: <your hostname>:8000
+Open your browser and goto: (your hostname):8000
