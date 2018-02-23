@@ -1,7 +1,9 @@
 # RSVP_WebApp
 
 ## Usage:
-cd erss-hwk1-dl261-ys205/docker-deploy
+### In a linux environment
+
+cd docker-deploy
 
 sudo docker-compose up
 
@@ -21,6 +23,10 @@ sudo docker-compose run web python3 manage.py makemigrations
 
 
 ## Then:
-cd erss-hwk1-dl261-ys205/docker-deploy
+cd docker-deploy
 
 sudo docker-compose up
+
+
+## Finally:
+Open your browser and goto: <your hostname>:8000
