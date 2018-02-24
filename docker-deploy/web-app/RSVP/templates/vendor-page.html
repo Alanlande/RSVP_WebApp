@@ -9,7 +9,7 @@
   <h1>These Question are finalized</h1>
   <h2>--------These are multiple choice question response--------:</h2>
   {% for q in curEvent.question_set.all %}
-        {% if q.question_type == 'Multi' and q.permission == True and q.finalization == True%}
+        {% if q.question_type == 'Multi' and q.vendor_permission == True and q.finalization == True%}
         <h2>Question: {{ q.question_text }}</h2>
           {% for c in q.choice_set.all%}
             <h3>Choice: {{ c.choice_text }}</h3> 
@@ -21,7 +21,7 @@
 
   <h2> --------These are free text question response--------:</h2>
   {% for q in curEvent.question_set.all %}
-        {% if q.question_type == 'Free' and q.permission == True and q.finalization == True%}
+        {% if q.question_type == 'Free' and q.vendor_permission == True and q.finalization == True%}
         <h2>Question: {{ q.question_text }}</h2>
           {% for r in q.responce_set.all%}
             <h3>{{ r.choice.choice_text }}</h3> 
@@ -34,7 +34,7 @@
   <h1>These Question are open</h1>
   <h2>--------These are multiple choice question response--------:</h2>
   {% for q in curEvent.question_set.all %}
-        {% if q.question_type == 'Multi' and q.permission == True and q.finalization == False%}
+        {% if q.question_type == 'Multi' and q.vendor_permission == True and q.finalization == False%}
         <h2>Question: {{ q.question_text }}</h2>
           {% for c in q.choice_set.all%}
             <h3>Choice: {{ c.choice_text }}</h3> 
@@ -47,7 +47,7 @@
 
   <h2>--------These are free text question response--------:</h2>
   {% for q in curEvent.question_set.all %}
-        {% if q.question_type == 'Free' and q.permission == True and q.finalization == False%}
+        {% if q.question_type == 'Free' and q.vendor_permission == True and q.finalization == False%}
         <h2>Question: {{ q.question_text }}</h2>
           {% for r in q.response_set.all%}
             <h3>{{ r.choice.choice_text }}</h3> 
