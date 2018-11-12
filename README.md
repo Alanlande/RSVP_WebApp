@@ -1,11 +1,11 @@
-# RSVP_Django_Web_App by De Lan
+# RSVP Web App by De Lan
 
 ![alt text](https://github.com/Alanlande/RSVP_WebApp/blob/master/sample2_pending_page.png "The main pending page")
 
 
 ## Description:
 
-This is a toy proxy server software built in Django framework that help people manage an RSVP website. People can create events and invite others as guests, vendors and share owner\
+This is a toy proxy server software built in Django framework that helps people manage their RSVP events. People can create events and invite others as guests, vendors and share owner\
 s with different level of privileges.
 
 - Play with it by visiting: YOURSERVER:80000 after you launch it on your onw server.
