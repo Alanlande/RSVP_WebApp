@@ -1,5 +1,8 @@
 # RSVP_Django_Web_App by De Lan
 
+![alt text](https://github.com/Alanlande/RSVP_WebApp/blob/master/sample2_pending_page.png "The main pending page")
+
+
 ## Description:
 
 This is a toy proxy server software built in Django framework that help people manage an RSVP website. People can create events and invite others as guests, vendors and share owner\
@@ -30,4 +33,4 @@ sudo docker-compose up
 
 
 ![alt text](https://github.com/Alanlande/RSVP_WebApp/blob/master/sample1_owner_page.png "The main owner page")
-![alt text](https://github.com/Alanlande/RSVP_WebApp/blob/master/sample2_pending_page.png "The main pending page")
+
