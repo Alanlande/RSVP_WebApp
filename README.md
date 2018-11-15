@@ -11,7 +11,7 @@ s with different level of privileges.
 - Play with it by visiting: YOURSERVER:8000 after you launch it on your onw server.
 
 ## Usage:
-cd erss-hwk1-dl261-ys205/docker-deploy
+cd /docker-deploy
 
 sudo docker-compose up
 
@@ -28,7 +28,7 @@ sudo docker-compose run web python3 manage.py makemigrations
 
 
 ## Then:
-cd erss-hwk1-dl261-ys205/docker-deploy
+cd /docker-deploy
 sudo docker-compose up
 
 ## More examples:
