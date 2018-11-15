@@ -8,7 +8,7 @@
 This is a toy proxy server software built in Django framework that helps people manage their RSVP events. People can create events and invite others as guests, vendors and share owner\
 s with different level of privileges.
 
-- Play with it by visiting: YOURSERVER:80000 after you launch it on your onw server.
+- Play with it by visiting: YOURSERVER:8000 after you launch it on your onw server.
 
 ## Usage:
 cd erss-hwk1-dl261-ys205/docker-deploy
