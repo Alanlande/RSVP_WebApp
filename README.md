@@ -21,8 +21,8 @@ sudo docker-compose up
 From your web-app dir  (assuming that your app is called RSVP, if not replace RSVP below)
 ```sh
 chmod o+w RSVP/migrations
-```
 cd ..
+```
 ### now you are in the directory with docker-compose.yml
 ```sh
 sudo docker-compose run web python3 manage.py makemigrations
